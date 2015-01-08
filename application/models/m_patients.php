@@ -20,6 +20,7 @@ class M_Patients extends CI_Model
      */
     function getPantientList()
     {
+
         $queryString = "SELECT patient_id, patient_uid, patient_phone, patient_age, patient_gender, song_name , (SELECT song_name FROM songs WHERE songs.song_id = patients.favorite_song_id) as song_name FROM  patients  WHERE 1 ORDER BY patient_name DESC";
         $query = $this->db->query($queryString);
         $feed[] = array();
