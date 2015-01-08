@@ -16,7 +16,7 @@ class M_reports extends CI_Model
      */
     function getPatientList()
     {
-        $queryString = "SELECT * , (SELECT song_name FROM songs WHERE songs.song_id = patients.favorite_song_id) as song_name FROM  patients  WHERE favorite_song_id IS NOT NULL";
+        $queryString = "SELECT patient_id, patient_uid, patient_phone, patient_age, patient_gender, song_name (SELECT song_name FROM songs WHERE songs.song_id = patients.favorite_song_id) as song_name FROM  patients  WHERE favorite_song_id IS NOT NULL";
         $query = $this->db->query($queryString);
         $feed[] = array();
         $e = 0;
@@ -48,7 +48,7 @@ class M_reports extends CI_Model
      */
     function getSongList()
     {
-        $queryString = "SELECT *  FROM  songs  WHERE 1";
+        $queryString = "SELECT song_name, song_artist, song_track_id, artworkUrl60, previewUrl, song_data, song_hash  FROM  songs  WHERE 1";
         $query = $this->db->query($queryString);
         $feed[] = array();
         $e = 0;

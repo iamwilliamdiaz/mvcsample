@@ -20,7 +20,7 @@ class M_Patients extends CI_Model
      */
     function getPantientList()
     {
-        $queryString = "SELECT * , (SELECT song_name FROM songs WHERE songs.song_id = patients.favorite_song_id) as song_name FROM  patients  WHERE 1 ORDER BY patient_name DESC";
+        $queryString = "SELECT patient_id, patient_uid, patient_phone, patient_age, patient_gender, song_name , (SELECT song_name FROM songs WHERE songs.song_id = patients.favorite_song_id) as song_name FROM  patients  WHERE 1 ORDER BY patient_name DESC";
         $query = $this->db->query($queryString);
         $feed[] = array();
         $e = 0;
@@ -52,7 +52,7 @@ class M_Patients extends CI_Model
      */
     function getPatientInfo($patientHash)
     {
-        $queryString = "SELECT * ,  (SELECT song_id FROM songs WHERE songs.song_id = patients.favorite_song_id) as song_id, (SELECT song_data FROM songs WHERE songs.song_id = patients.favorite_song_id) as song_data FROM  patients  WHERE patient_uid = '$patientHash'";
+        $queryString = "SELECT patient_id, patient_uid, patient_name, patient_phone, patient_age, patient_gender, song_id, song_data ,  (SELECT song_id FROM songs WHERE songs.song_id = patients.favorite_song_id) as song_id, (SELECT song_data FROM songs WHERE songs.song_id = patients.favorite_song_id) as song_data FROM  patients  WHERE patient_uid = '$patientHash'";
         $query = $this->db->query($queryString);
         $feed[] = array();
         if (count($query->result()) != "0") {
