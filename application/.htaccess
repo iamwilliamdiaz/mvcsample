@@ -1,0 +1,6 @@
+RewriteEngine on
+RewriteCond %{SERVER_PORT} 80
+RewriteRule ^(.*)$ https://http://crowdsflow.com/beta/$1 [R=301,L]
+RewriteRule ^$ /index.php [L]
+RewriteCond $1 !^(index\.php|img|css|js|video_files|robots\.txt|favicon\.ico)
+RewriteRule ^(.*)$ /index.php/$1 [L]
