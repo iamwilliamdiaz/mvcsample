@@ -55,6 +55,7 @@ class M_Songs extends CI_Model
      */
     function getSongList()
     {
+
         $queryString = "SELECT song_name, song_track_id, artworkUrl60, previewUrl, song_data, song_hash FROM  songs  WHERE 1";
         $query = $this->db->query($queryString);
         $feed[] = array();
